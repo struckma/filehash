@@ -1,5 +1,7 @@
 .onLoad <- function(lib, pkg) {
         assign("defaultType", "DB1", .filehashOptions)
+        assign("db1LockMaxAttempts", "4", .filehashOptions)
+        assign("db1LockSleepDuration", "0.5", .filehashOptions)
 
         for(type in c("DB1", "RDS")) {
                 cname <- paste("create", type, sep = "")
