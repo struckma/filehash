@@ -182,14 +182,10 @@ setMethod("lockFile", "file", function(db, ...) {
         sprintf("%s___LOCK", summary(db)$description)
 })
 
-createLockFile <- function(name) {
+createLockFile <- function(name, max.attempts = 4, sleep.duration = 0.5) {
         if(.Platform$OS.type != "windows") 
                 status <- .Call(C_lock_file, name)
         else {
-                ## TODO: are these optimal values for max.attempts
-                ## and sleep.duration?
-                max.attempts <- 4
-                sleep.duration <- 0.5
                 attempts <- 0
                 status <- -1
                 while ((attempts <= max.attempts) && ! isTRUE(status >= 0)) {
