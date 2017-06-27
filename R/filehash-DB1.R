@@ -184,7 +184,7 @@ setMethod("lockFile", "file", function(db, ...) {
 
 createLockFile <- function(name, max.attempts = filehashOption()$db1LockMaxAttempts, 
 				 sleep.duration = filehashOption()$db1LockSleepDuration) {
-        if(.Platform$OS.type != "windows") 
+        if(FALSE && .Platform$OS.type != "windows") 
                 status <- .Call(C_lock_file, name)
         else {
                 attempts <- 0
